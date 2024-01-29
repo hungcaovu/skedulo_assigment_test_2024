@@ -1,0 +1,9 @@
+<template>
+    <lightning-button variant="" label="Fetch new account" title="Fetch new account" onclick={handleOnClick} class="slds-m-left_x-small"></lightning-button>
+    <template lwc:if={error} >
+        <span style="background-color: yellow; color: read;">{message}</span>
+    </template>
+    <template lwc:else >
+        <span style="color: green;">{message}</span>
+    </template>
+</template>

@@ -1,0 +1,22 @@
+.redColor {
+    background-color: red;
+}
+
+table, td {
+    border: 1px solid;
+    text-align: center;
+  }
+th{
+    color: white;
+    border: 1px solid;
+    background: rgb(45, 147, 225);
+    text-align: center;
+  }
+
+.greenColor {
+    background-color: green;
+}
+
+.yellowColor {
+    background-color: yellow;
+}

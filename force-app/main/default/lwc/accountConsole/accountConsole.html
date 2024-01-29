@@ -1,0 +1,72 @@
+<template>
+    <lightning-card  title="Account Console">
+        <!-- Input Control -->
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Name" placeholder="Free text (3 characters or above to search)" minlength="3" onchange={handleNameInputChange}></lightning-input>
+            <lightning-combobox name="type" label="Type" value="" placeholder=" --- Select ---" options={typeOptions} onchange={handleTypeChange} ></lightning-combobox>
+
+            <c-reusable-multi-select-lookup label="Owner" onselected={handleselectedOwnerRecords} icon-name="standard:account" placeholder="Multi Lookup...">
+            </c-reusable-multi-select-lookup>
+            <lightning-slider label="Annual Revenue" step="1" min="10000" max="1000000000" value={annualRevenueValue}  onchange={handleAnnualRevenueChange} > </lightning-slider>
+            <lightning-button variant="search" label="Search" title="Search" onclick={handleSearchClick} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="generate_csv" label="Generate CSV" title="Generate CSV" onclick={handleGenerateCSVClick} class="slds-m-left_x-small"></lightning-button>
+        </div>
+        <!-- Result Table-->
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-combobox name="RowPerPage" label="Row Per Page" value={rowPerPageValue} options={rowPerPageOptions} onchange={handleRowPerPageChange} ></lightning-combobox>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <!--<lightning-datatable 
+                data-id="table" 
+                key-field="Id" 
+                data={data} 
+                columns={columns}>
+           </lightning-datatable> -->
+           <table>
+                <thead>
+                    <th>No</th>
+                    <th>Account Name</th>
+                    <th>Owner</th>
+                    <th>Phone Number</th>
+                    <th>Annual Revenue</th>
+                    <th>Last Modified Date</th>
+                </thead>
+                <tbody>
+                <template for:each={data} for:item="account">
+                    <tr key={account.Id}> 
+                        <td class="checkbox-cell">{account.Index}</td>
+                        <td><a href={account.AccountUrlView}>{account.AccountName}</a></td>
+                        <td><a href={account.OwnerUrlView}>{account.OwnerName}</a></td>
+                        <td>{account.PhoneNumber}</td>
+                        <td class={account.ColourClass}>{account.AnnualRevenue}</td>
+                        <td>{account.LastModifiedDate}</td>
+                    </tr>
+                </template>
+                </tbody>
+            </table>
+
+            </br>
+
+            <lightning-layout horizontal-align="space">
+                <lightning-layout-item flexibility="auto">
+                    <lightning-button 
+                        label="Previous" 
+                        icon-name="utility:chevronleft" 
+                        onclick={previousHandler}>
+                    </lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto">
+                    Total: {totalRecountCount} records Page {page}/{totalPage}
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto">
+                    <lightning-button 
+                        label="Next" 
+                        icon-name="utility:chevronright" 
+                        icon-position="right"
+                        onclick={nextHandler}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>
