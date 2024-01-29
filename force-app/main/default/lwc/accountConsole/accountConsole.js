@@ -213,6 +213,8 @@ export default class AccountConsole extends LightningElement {
 
         if (this.totalPage > 0) {
             this.page = 1;
+        } else {
+            this.page = 0;
         }
         this.endingRecord = this.pageSize;
     }

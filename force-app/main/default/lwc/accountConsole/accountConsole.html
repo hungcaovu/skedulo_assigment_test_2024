@@ -2,19 +2,30 @@
     <lightning-card  title="Account Console">
         <!-- Input Control -->
         <div class="slds-p-around_medium lgc-bg">
-            <lightning-input type="text" label="Name" placeholder="Free text (3 characters or above to search)" minlength="3" onchange={handleNameInputChange}></lightning-input>
-            <lightning-combobox name="type" label="Type" value="" placeholder=" --- Select ---" options={typeOptions} onchange={handleTypeChange} ></lightning-combobox>
-
-            <c-reusable-multi-select-lookup label="Owner" onselected={handleselectedOwnerRecords} icon-name="standard:account" placeholder="Multi Lookup...">
-            </c-reusable-multi-select-lookup>
-            <lightning-slider label="Annual Revenue" step="1" min="10000" max="1000000000" value={annualRevenueValue}  onchange={handleAnnualRevenueChange} > </lightning-slider>
-            <lightning-button variant="search" label="Search" title="Search" onclick={handleSearchClick} class="slds-m-left_x-small"></lightning-button>
-            <lightning-button variant="generate_csv" label="Generate CSV" title="Generate CSV" onclick={handleGenerateCSVClick} class="slds-m-left_x-small"></lightning-button>
+            <lightning-layout horizontal-align="space">
+                <lightning-layout-item size="6" flexibility="auto" padding="around-small">
+                    <lightning-input type="text" label="Name" placeholder="Free text (3 characters or above to search)" minlength="3" onchange={handleNameInputChange}></lightning-input>
+                    <lightning-combobox name="type" label="Type" value="" placeholder=" --- Select ---" options={typeOptions} onchange={handleTypeChange} ></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" flexibility="auto" padding="around-small">
+                    <c-reusable-multi-select-lookup label="Owner" onselected={handleselectedOwnerRecords} icon-name="standard:account" placeholder="Multi Lookup...">
+                    </c-reusable-multi-select-lookup>
+                    <lightning-slider label="Annual Revenue" step="1" min="10000" max="1000000000" value={annualRevenueValue}  onchange={handleAnnualRevenueChange} > </lightning-slider>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout horizontal-align="space">
+                <lightning-layout-item size="3" flexibility="auto">
+                    <lightning-combobox name="RowPerPage" label="Row Per Page" value={rowPerPageValue} options={rowPerPageOptions} onchange={handleRowPerPageChange} ></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" flexibility="auto">
+                </lightning-layout-item>
+                <lightning-layout-item size="3" flexibility="auto" padding="around-small">
+                    <lightning-button variant="search" label="Search" title="Search" onclick={handleSearchClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="generate_csv" label="Generate CSV" title="Generate CSV" onclick={handleGenerateCSVClick} class="slds-m-left_x-small"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
         </div>
         <!-- Result Table-->
-        <div class="slds-p-around_medium lgc-bg">
-            <lightning-combobox name="RowPerPage" label="Row Per Page" value={rowPerPageValue} options={rowPerPageOptions} onchange={handleRowPerPageChange} ></lightning-combobox>
-        </div>
         <div class="slds-p-around_medium lgc-bg">
             <!--<lightning-datatable 
                 data-id="table" 
